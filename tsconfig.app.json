@@ -3,12 +3,14 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "./out-tsc/app",
     "types": [
       "node"
     ],
     "paths": {
-      "@": ["src/app/*"],
+      "@pages/*": ["src/app/pages/*"],
+      "@po-components/*": ["src/app/domains/Pomodoro/components/*"],
     }
   },
   "include": [
