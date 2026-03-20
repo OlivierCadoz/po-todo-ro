@@ -7,7 +7,7 @@ import { POMODORO_TIME, SHORT_BREAK_TIME } from '@po-constants/pomodoroTime';
 })
 export class CounterService {
   private count = signal(POMODORO_TIME);
-  private isBreak = false
+  private isBreak = false;
 
   private counterInterval?: NodeJS.Timeout;
 

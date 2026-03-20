@@ -15,7 +15,6 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "preserve",
-    "types": ["node"],
     "paths": {
       "@pages/*": ["pages/*"],
       "@po-components/*": ["domains/Pomodoro/components/*"],
