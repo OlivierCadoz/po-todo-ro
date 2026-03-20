@@ -20,7 +20,8 @@
       "@pages/*": ["pages/*"],
       "@po-components/*": ["domains/Pomodoro/components/*"],
       "@po-services/*": ["domains/Pomodoro/services/*"],
-      "@po-utils/*": ["domains/Pomodoro/utils/*"]
+      "@po-utils/*": ["domains/Pomodoro/utils/*"],
+      "@po-constants/*": ["domains/Pomodoro/constants/*"],
     }
   },
   "angularCompilerOptions": {
