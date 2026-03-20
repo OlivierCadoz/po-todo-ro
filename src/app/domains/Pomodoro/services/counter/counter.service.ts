@@ -6,17 +6,17 @@ import { POMODORO_TIME, SHORT_BREAK_TIME } from '@po-constants/pomodoroTime';
   providedIn: 'root',
 })
 export class CounterService {
-  private count = signal(POMODORO_TIME);
+  public count = signal(POMODORO_TIME);
   private isBreak = false;
 
   private counterInterval?: NodeJS.Timeout;
 
-  updateCount(externalCount: WritableSignal<string>) {
+  updateCount() {
     this.count.update((count) => {
         let { minutes, seconds } = splitMinutesAndSeconds(count);
 
         if(minutes === 0 && seconds === 0) {
-          this.startAnew(externalCount);
+          this.startAnew();
         } else if (seconds === 0) {
           minutes -= 1;
           seconds = 59;
@@ -28,18 +28,17 @@ export class CounterService {
       });
   }
 
-  startCounter(count: WritableSignal<string>) {
+  startCounter() {
     this.counterInterval = setInterval(() => {
-      this.updateCount(count);
-      count.set(this.count());
+      this.updateCount();
     }, 1000);
   }
 
-  startAnew(count: WritableSignal<string>) {
+  startAnew() {
     this.clearInterval();
 
     setTimeout(() => {
-      this.switchStarter(count);
+      this.switchStarter();
       this.toggleIsBreak();
     }, 1000);
   }
@@ -49,13 +48,13 @@ export class CounterService {
     this.counterInterval = undefined;
   }
 
-  switchStarter(count: WritableSignal<string>) {
+  switchStarter() {
     if (this.isBreak) {
       this.count.set(SHORT_BREAK_TIME);
-      this.startCounter(count);
+      this.startCounter();
     } else {
       this.count.set(POMODORO_TIME);
-      this.startCounter(count);
+      this.startCounter();
     }
   }
 

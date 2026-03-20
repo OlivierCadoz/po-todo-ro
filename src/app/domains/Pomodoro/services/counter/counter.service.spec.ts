@@ -26,7 +26,7 @@ describe('CounterService', () => {
       it('Then it should update the count to 24:59 after 1 second', () => {
         const count = service['count'];
 
-        service.startAnew(count);
+        service.startAnew();
 
         setTimeout(() => {
           expect(count()).toBe('24:59');
@@ -41,7 +41,7 @@ describe('CounterService', () => {
         const count = service['count'] as any;
         count.set('24:01');
 
-        service.startAnew(count);
+        service.startAnew();
 
         setTimeout(() => {
           expect(count()).toBe('24:00');
@@ -56,7 +56,7 @@ describe('CounterService', () => {
         const count = service['count'];
         count.set('00:00');
 
-        service.startAnew(count);
+        service.startAnew();
 
         setTimeout(() => {
           expect(count()).toBe('05:00');
@@ -72,7 +72,7 @@ describe('CounterService', () => {
         count.set('00:00');
         service['toggleIsBreak']();
 
-        service.startAnew(count);
+        service.startAnew();
 
         setTimeout(() => {
           expect(count()).toBe('25:00');
