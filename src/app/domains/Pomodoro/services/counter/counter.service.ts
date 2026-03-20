@@ -1,4 +1,4 @@
-import { Injectable, WritableSignal, signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { splitMinutesAndSeconds, formatTime } from '@po-utils/counter.utils';
 import { POMODORO_TIME, SHORT_BREAK_TIME } from '@po-constants/pomodoroTime';
 
@@ -8,6 +8,7 @@ import { POMODORO_TIME, SHORT_BREAK_TIME } from '@po-constants/pomodoroTime';
 export class CounterService {
   public count = signal(POMODORO_TIME);
   private isBreak = false;
+  private isFreezed = false;
 
   private counterInterval?: NodeJS.Timeout;
 
@@ -17,6 +18,7 @@ export class CounterService {
 
         if(minutes === 0 && seconds === 0) {
           this.startAnew();
+          this.toggleIsBreak();
         } else if (seconds === 0) {
           minutes -= 1;
           seconds = 59;
@@ -38,27 +40,38 @@ export class CounterService {
     this.clearInterval();
 
     setTimeout(() => {
-      this.switchStarter();
-      this.toggleIsBreak();
+      if (this.isFreezed) this.toggleIsFreezed();
+      else this.switchStarter();
+
+      this.startCounter();
     }, 1000);
   }
 
   clearInterval() {
-    if (this.counterInterval) clearInterval(this.counterInterval);
-    this.counterInterval = undefined;
+    if (this.counterInterval) {
+      clearInterval(this.counterInterval);
+      this.counterInterval = undefined;
+    }
   }
 
   switchStarter() {
     if (this.isBreak) {
       this.count.set(SHORT_BREAK_TIME);
-      this.startCounter();
     } else {
       this.count.set(POMODORO_TIME);
-      this.startCounter();
     }
+  }
+
+  freezeCounter() {
+    this.clearInterval();
+    this.toggleIsFreezed();
   }
 
   toggleIsBreak() {
     this.isBreak = !this.isBreak;
+  }
+
+  toggleIsFreezed() {
+    this.isFreezed = !this.isFreezed;
   }
 }

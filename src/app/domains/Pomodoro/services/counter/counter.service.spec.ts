@@ -80,4 +80,30 @@ describe('CounterService', () => {
       });
     });
   });
+
+  describe('Given the counter is running', () => {
+    describe('When executing freezeCounter', () => {
+      it('Then it should stop the counter and keep the same count', () => {
+        const count = service['count'];
+        service.startAnew();
+        service.freezeCounter();
+      });
+    });
+  });
+
+  describe('Given the counter is freezed', () => {
+    describe('When executing startAnew', () => {
+      it('Then it should start the counter where it was freezed and update the count after 1 second', () => {
+        const count = service['count'];
+        count.set('23:47');
+        service.startAnew();
+        service.freezeCounter();
+        service.startAnew();
+
+        setTimeout(() => {
+          expect(count()).toBe('23:46');
+        }, 1100);
+      });
+    });
+  });
 });

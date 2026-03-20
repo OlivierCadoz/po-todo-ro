@@ -15,7 +15,10 @@ export class PoCounter {
   private counterService = inject(CounterService);
 
   startCounter() {
-    this.counterService
-      .startAnew();
+    this.counterService.startAnew();
+  }
+
+  freezeCounter() {
+    this.counterService.freezeCounter();
   }
 }
