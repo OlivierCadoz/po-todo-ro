@@ -1,4 +1,5 @@
-<p>{{ count() }}</p>
-<button (click)="startCounter()">start</button>
-<button (click)="freezeCounter()">freeze</button>
-
+<article class="pocounter">
+  <p class="pocounter_count">{{ count() }}</p>
+  <button class="pocounter_button" (click)="startCounter()">start</button>
+  <button class="pocounter_button pocounter_button--margin" (click)="freezeCounter()">freeze</button>
+</article>
