@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
 import { CounterService } from './counter.service';
-import { after } from 'node:test';
 
 describe('CounterService', () => {
   let service: CounterService;
@@ -38,7 +37,7 @@ describe('CounterService', () => {
   describe('Given the count is 24:01', () => {
     describe('When executing startAnew', () => {
       it('Then it should update the count to 23:59 after 1 second', () => {
-        const count = service['count'] as any;
+        const count = service['count'];
         count.set('24:01');
 
         service.startAnew();
@@ -102,6 +101,21 @@ describe('CounterService', () => {
 
         setTimeout(() => {
           expect(count()).toBe('23:46');
+        }, 1100);
+      });
+    });
+  });
+
+  describe('Given the number of pomodori is a multiple of 4', () => {
+    describe('When executing startAnew', () => {
+      it('Then it should set the break time to 15:00', () => {
+        const count = service['count'];
+        service['pomodoriNumber'] = 4;
+
+        service.startAnew();
+
+        setTimeout(() => {
+          expect(count()).toBe('15:00');
         }, 1100);
       });
     });

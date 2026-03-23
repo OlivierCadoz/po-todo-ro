@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { splitMinutesAndSeconds, formatTime } from '@po-utils/counter.utils';
-import { POMODORO_TIME, SHORT_BREAK_TIME } from '@po-constants/pomodoroTime';
+import { POMODORO_TIME, SHORT_BREAK_TIME, LONG_BREAK_TIME } from '@po-constants/pomodoroTime';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +9,7 @@ export class CounterService {
   public count = signal(POMODORO_TIME);
   private isBreak = false;
   private isFreezed = false;
+  private pomodoriNumber = 0;
 
   private counterInterval?: NodeJS.Timeout;
 
@@ -40,8 +41,12 @@ export class CounterService {
     this.clearInterval();
 
     setTimeout(() => {
-      if (this.isFreezed) this.toggleIsFreezed();
-      else this.switchStarter();
+      if (this.isFreezed) {
+        this.toggleIsFreezed();
+      } else {
+        this.switchStarter();
+        if (!this.isBreak) this.incrementPomodoriNumber();
+      }
 
       this.startCounter();
     }, 1000);
@@ -56,10 +61,16 @@ export class CounterService {
 
   switchStarter() {
     if (this.isBreak) {
-      this.count.set(SHORT_BREAK_TIME);
+      this.setBreakTime();
     } else {
       this.count.set(POMODORO_TIME);
     }
+  }
+
+  setBreakTime() {
+    const isLongBreak = this.pomodoriNumber % 4 === 0;
+    const breakTime = isLongBreak ? SHORT_BREAK_TIME : LONG_BREAK_TIME;
+    this.count.set(breakTime);
   }
 
   freezeCounter() {
@@ -73,5 +84,9 @@ export class CounterService {
 
   toggleIsFreezed() {
     this.isFreezed = !this.isFreezed;
+  }
+
+  incrementPomodoriNumber() {
+    this.pomodoriNumber += 1;
   }
 }
