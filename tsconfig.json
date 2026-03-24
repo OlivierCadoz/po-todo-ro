@@ -25,6 +25,7 @@
       "@to-services/*": ["domains/Todo/services/*"],
       "@to-utils/*": ["domains/Todo/utils/*"],
       "@to-constants/*": ["domains/Todo/constants/*"],
+      "@to-types/*": ["domains/Todo/types/*"],
     }
   },
   "angularCompilerOptions": {
