@@ -21,6 +21,10 @@
       "@po-services/*": ["domains/Pomodoro/services/*"],
       "@po-utils/*": ["domains/Pomodoro/utils/*"],
       "@po-constants/*": ["domains/Pomodoro/constants/*"],
+      "@to-components/*": ["domains/Todo/components/*"],
+      "@to-services/*": ["domains/Todo/services/*"],
+      "@to-utils/*": ["domains/Todo/utils/*"],
+      "@to-constants/*": ["domains/Todo/constants/*"],
     }
   },
   "angularCompilerOptions": {
