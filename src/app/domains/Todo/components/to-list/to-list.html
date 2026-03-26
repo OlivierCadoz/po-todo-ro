@@ -1,5 +1,8 @@
 <ul>
   @for (todo of todos(); track $index) {
-    <li>{{ todo.title }}</li>
+    <li>
+      <input id="todo-{{todo.id}}" type="checkbox" [(ngModel)]="todo.isDone" (change)="consolelol()" />
+      <label for="todo-{{todo.id}}">{{todo.title}}</label>
+    </li>
   }
 </ul>

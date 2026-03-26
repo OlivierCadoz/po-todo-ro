@@ -20,13 +20,4 @@ export class TodoService {
   deleteTodo(id: number) {
     this.todos.update((todos) => todos.filter((todo) => todo.id !== id));
   }
-
-  toggleTodoStatus(id: number) {
-    this.todos.update((todos) =>
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
-      )
-    );
-
-  }
 }
