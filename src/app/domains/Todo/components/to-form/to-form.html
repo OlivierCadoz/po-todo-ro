@@ -1,10 +1,16 @@
-<form (ngSubmit)="saveTodo()">
-  <fieldset>
-    <legend>Todo Form</legend>
+<form class="toform" (ngSubmit)="saveTodo()">
+  <fieldset class="toform__fieldset">
+    <legend class="toform__legend">Add a task</legend>
 
-    <label for="title">Title:</label>
-    <input id="title" type="text" [(ngModel)]="title" name="title" required />
+    <label class="toform__label" for="title">Title :</label>
+    <input
+      id="title"
+      class="toform__input neumorphic"
+      type="text"
+      placeholder="task title"
+      [(ngModel)]="title" name="todo title"
+      required />
 
-    <button type="submit">Save</button>
+    <button class="toform__button neumorphic" type="submit">Add</button>
   </fieldset>
 </form>
