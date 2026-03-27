@@ -4,7 +4,51 @@
 }
 
 body {
+  margin: 0;
   font-family: 'Roboto', sans-serif;
+  font-size: 16px;
   background-color: #f5f2ed;
   color: #333;
+}
+
+button.neumorphic {
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  background: #f5f2ed;
+  box-shadow: inset 4px 4px 8px #d1cbc1, inset -4px -4px 8px #fefdfb;
+
+  &:hover {
+    box-shadow: 6px 6px 12px #d1cbc1, -6px -6px 12px #fefdfb;
+  }
+}
+
+input.neumorphic {
+  border: none;
+  outline: none;
+  background: #f5f2ed;
+  font-size: 16px;
+  color: #555;
+  padding: 14px 6px 10px 20px;
+  box-shadow: inset 8px 8px 8px #d1cbc1,
+              inset -8px -8px 8px #fefdfb;
+  border-radius: 25px;
+  transition: box-shadow 0.3s ease;
+
+  &::placeholder {
+    color: #555;
+    transition: color 0.3s ease;
+  }
+
+  &:focus {
+    box-shadow: inset 8px 8px 8px rgba(#d1cbc1, 0.7),
+              inset -8px -8px 8px rgba(#fefdfb, 0.7);
+
+    &::placeholder {
+      color: #999;
+    }
+  }
 }

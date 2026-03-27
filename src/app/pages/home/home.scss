@@ -1,4 +1,19 @@
 :host {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  padding: 24px;
+
+  ::ng-deep po-counter {
+    grid-column: 9 / 13;
+    grid-row: 1;
+  }
+
+  ::ng-deep to-form {
+    grid-column: 1 / 7;
+  }
+
+  ::ng-deep to-list {
+    grid-column: 1 / 7;
+  }
 }

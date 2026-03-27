@@ -5,26 +5,12 @@
   background: #f5f2ed;
   box-shadow: 9px 9px 16px #d1cbc1, -9px -9px 16px #fefdfb;
 
-  &_count {
+  &__count {
     font-size: 3rem;
     font-weight: bold;
   }
 
-  &_button {
-    padding: 12px 28px;
-    font-weight: 500;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    background: #f5f2ed;
-    box-shadow: 6px 6px 12px #d1cbc1, -6px -6px 12px #fefdfb;
-
-    &--margin {
-      margin-left: 1rem;
-    }
-
-    &:hover {
-      box-shadow: inset 4px 4px 8px #d1cbc1, inset -4px -4px 8px #fefdfb;
-    }
+  &__button--margin {
+    margin-left: 1rem;
   }
 }
