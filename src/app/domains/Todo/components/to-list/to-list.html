@@ -1,8 +1,9 @@
-<ul>
+<ul class="tolist">
   @for (todo of todos(); track $index) {
-    <li>
-      <input id="todo-{{todo.id}}" type="checkbox" [(ngModel)]="todo.isDone" (change)="consolelol()" />
-      <label for="todo-{{todo.id}}">{{todo.title}}</label>
+    <li class="tolist__item">
+      <input class="tolist__input tolist__input--checkmark" id="todo-{{todo.id}}" type="checkbox" [(ngModel)]="todo.isDone" (change)="consolelol()" />
+      <div class="checkmark"></div>
+      <label class="tolist__label" for="todo-{{todo.id}}">{{todo.title}}</label>
     </li>
   }
 </ul>
